@@ -1,0 +1,121 @@
+{-# START_FILE package.yaml #-}
+name:                {{name}}
+version:             0.1.0.0
+git:                 "{{git-username}}{{^git-username}}gituser{{/git-username}}/{{name}}"
+license:             "{{license}}{{^license}}ENTER LICENSE HERE{{/license}}"
+author:              "{{author-name}}{{^author-name}}Author name here{{/author-name}}"
+maintainer:          "{{author-email}}{{^author-email}}example@example.com{{/author-email}}"
+copyright:           "{{copyright}}{{^copyright}}{{year}}{{^year}}2023{{/year}} {{author-name}}{{^author-name}}Author name here{{/author-name}}{{/copyright}}"
+
+extra-source-files:
+- CHANGELOG.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            {{category}}{{^category}}Web{{/category}}
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README at <https://{{scm-url}}{{^scm-url}}github.com{{/scm-url}}/{{git-username}}{{^git-username}}gituser{{/git-username}}/{{name}}#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  default-language: GHC2021
+  ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+  default-extensions:
+    - DerivingVia
+    - LambdaCase
+    - NamedWildCards
+    - LexicalNegation
+    - NoStarIsType
+    - FunctionalDependencies
+    - GADTs
+    - DuplicateRecordFields
+    - RecordWildCards
+  {{name}}-exe:
+    main:                Main.hs
+    source-dirs:         app
+    dependencies:
+    - {{name}}
+
+tests:
+  default-language: GHC2021
+  ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+  default-extensions:
+    - DerivingVia
+    - LambdaCase
+    - NamedWildCards
+    - LexicalNegation
+    - NoStarIsType
+    - FunctionalDependencies
+    - GADTs
+    - DuplicateRecordFields
+    - RecordWildCards
+  {{name}}-test:
+    main:                Spec.hs
+    source-dirs:         test
+    dependencies:
+    - {{name}}
+
+{-# START_FILE Setup.hs #-}
+import Distribution.Simple
+main = defaultMain
+
+{-# START_FILE test/Spec.hs #-}
+main :: IO ()
+main = putStrLn "Test suite not yet implemented"
+
+{-# START_FILE src/Lib.hs #-}
+module Lib
+    ( someFunc
+    ) where
+
+someFunc :: IO ()
+someFunc = putStrLn "someFunc"
+
+{-# START_FILE app/Main.hs #-}
+module Main (main) where
+
+import Lib
+
+main :: IO ()
+main = someFunc
+
+{-# START_FILE README.md #-}
+# {{name}}
+
+{-# START_FILE CHANGELOG.md #-}
+# Changelog for `{{ name }}`
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to the
+[Haskell Package Versioning Policy](https://pvp.haskell.org/).
+
+## Unreleased
+
+## 0.1.0.0 - YYYY-MM-DD
