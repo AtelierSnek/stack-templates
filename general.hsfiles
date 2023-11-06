@@ -33,25 +33,23 @@ ghc-options:
 - -Wpartial-fields
 - -Wredundant-constraints
 
+default-extensions:
+  - DerivingVia
+  - LambdaCase
+  - NamedWildCards
+  - LexicalNegation
+  - NoStarIsType
+  - FunctionalDependencies
+  - GADTs
+  - DuplicateRecordFields
+  - RecordWildCards
+
+default-language: GHC2021
+
 library:
   source-dirs: src
 
 executables:
-  default-language: GHC2021
-  ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-  default-extensions:
-    - DerivingVia
-    - LambdaCase
-    - NamedWildCards
-    - LexicalNegation
-    - NoStarIsType
-    - FunctionalDependencies
-    - GADTs
-    - DuplicateRecordFields
-    - RecordWildCards
   {{name}}-exe:
     main:                Main.hs
     source-dirs:         app
@@ -59,21 +57,6 @@ executables:
     - {{name}}
 
 tests:
-  default-language: GHC2021
-  ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-  default-extensions:
-    - DerivingVia
-    - LambdaCase
-    - NamedWildCards
-    - LexicalNegation
-    - NoStarIsType
-    - FunctionalDependencies
-    - GADTs
-    - DuplicateRecordFields
-    - RecordWildCards
   {{name}}-test:
     main:                Spec.hs
     source-dirs:         test
