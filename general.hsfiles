@@ -44,7 +44,7 @@ default-extensions:
   - DuplicateRecordFields
   - RecordWildCards
 
-default-language: GHC2021
+language: GHC2021
 
 library:
   source-dirs: src
